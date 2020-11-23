@@ -32,19 +32,23 @@ public class Program {
         int summ = 0;
         int value = 0;
 
-        if(array.length != 4 || array[0].length != 4 || array[1].length != 4
-                                || array[2].length != 4 || array[3].length != 4) {
-            throw new MyArraySizeException();
-        }
+        
 
         for(int i=0;i<4;i++){
+            if(array.length != 4 || array[i].length != 4) {
+            throw new MyArraySizeException();
+            }
             for(int j=0;j<4;j++){
                 try{
+                    boolean isNumeric = array[i][j].chars().allMatch(Character::isDigit);
+                    if(isNumeric == false) {
+                        throw new MyArrayDataException();
+                    }
                     value = Integer.parseInt(array[i][j]);
                     summ += value;
-                } catch (IllegalArgumentException e){
+                } catch (MyArrayDataException m){
                     String message = "in array["+i+"]["+j+"]";
-                    throw new MyArrayDataException(message);
+                    System.out.println(m.toString(message));
                 }
             }
         }
