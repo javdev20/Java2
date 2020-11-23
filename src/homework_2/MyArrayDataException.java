@@ -9,8 +9,8 @@ package homework_2;
  *
  * @author User
  */
-public class MyArrayDataException extends RuntimeException{
-    public MyArrayDataException(String message) {
-        super("Incorrect data " + message);
+public class MyArrayDataException extends Exception{
+     public String toString(String message) {
+        return "Incorrect data " + message;
     }
 }
